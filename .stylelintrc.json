@@ -1,0 +1,10 @@
+{
+  "extends": ["stylelint-8-point-grid"],
+  "rules": {
+    "plugin/8-point-grid": {
+      "base": 4,
+      "allowlist": ["2px", "1px", "0.0625rem"],
+      "ignorelist": ["width", "height"]
+    }
+  }
+}

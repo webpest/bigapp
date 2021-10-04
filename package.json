@@ -6,15 +6,48 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint --no-cache",
+    "lint:fix": "npm run lint src --fix",
+    "lint:css": "stylelint src/**/*.{scss,css} -f --fix",
+    "prettier": "prettier --ignore-unknown --write src",
+    "format-code": "npm run lint:fix && npm run lint:css && npm run prettier",
+    "test": "jest --watch",
+    "prepare": "husky install"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.8.1",
+    "classnames": "^2.2.6",
     "next": "11.1.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-hook-form": "^7.17.0",
+    "sass": "^1.42.1",
+    "swr": "^1.0.1",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.1.2",
+    "babel-jest": "^27.2.4",
+    "babel-plugin-inline-react-svg": "^2.0.1",
     "eslint": "7.32.0",
-    "eslint-config-next": "11.1.2"
+    "eslint-config-next": "11.1.2",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "husky": "^7.0.2",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.2.4",
+    "lint-staged": "^11.1.2",
+    "msw": "^0.35.0",
+    "prettier": "2.4.1",
+    "react-test-renderer": "^17.0.2",
+    "stylelint": "^13.13.1",
+    "stylelint-8-point-grid": "^2.1.0"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,css,scss}": [
+      "npm run format-code",
+      "git add"
+    ]
   }
 }
