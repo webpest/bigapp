@@ -1,0 +1,22 @@
+.game_row {
+    display: flex;
+    margin: 1rem 0;
+}
+
+.game_row input {
+    border: 1px solid #e2e2e2;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 60px;
+    margin-right: 0.8rem;
+}
+
+.game_row input:last-child {
+    background-color: red;
+    color: #fff;
+}

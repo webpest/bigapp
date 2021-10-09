@@ -1,10 +1,32 @@
 import Head from 'next/head';
+import { useState } from 'react';
 
 import { Button } from '@/components/Button';
 
 import VercelLogo from '../../public/vercel.svg';
+import styles from '../styles/game.module.css';
+import { bigShot } from '../utils/bigshot';
 
 export default function Home() {
+  const [games, setGames] = useState([]);
+  const [noOfGames, setNoOfGames] = useState(0);
+
+  const quickPick = () => {
+    setGames(bigShot(noOfGames));
+  };
+
+  const changeValue = ({ target }, rowId, id) => {
+    const { value } = target;
+    const gameRowId = rowId;
+    const gameId = id;
+
+    console.log(value, gameRowId, gameId);
+  };
+
+  const handleOnChange = (e) => {
+    setNoOfGames(e.target.value);
+  };
+
   return (
     <div>
       <Head>
@@ -16,7 +38,28 @@ export default function Home() {
       <main>
         <h1>Home Page</h1>
         <VercelLogo />
-        <Button />
+        <select onChange={handleOnChange}>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+        <button onClick={quickPick}>Quick Pick</button>
+        {games &&
+          games.map((game, gameKey) => {
+            return (
+              <div className={styles.game_row} key={gameKey}>
+                {game.map((g, i) => (
+                  <input
+                    type="text"
+                    value={g}
+                    key={i}
+                    onChange={(e) => changeValue(e, gameKey, i)}
+                  />
+                ))}
+              </div>
+            );
+          })}
       </main>
     </div>
   );
